@@ -1,11 +1,24 @@
 Package: ROCket
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Simple and Fast ROC Curves
+Version: 0.0.0.9000
+Authors@R: person("Daniel", "Lazar", email = "da-zar@gmx.net", role = c("aut", "cre"))
+Description: Simple and fast functions for estimating ROC curves and creating nice looking graphs.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports:
+    data.table (>= 1.13.0)
+Suggests:
+    testthat
+RoxygenNote: 7.1.1
+Collate: 
+    'ROCket.R'
+    'generics.R'
+    'auc.R'
+    'rkt_ecdf.R'
+    'rkt_prep.R'
+    'rkt_roc.R'
+    'roc_methods.R'
+    'utils.R'
+    'zzz.R'

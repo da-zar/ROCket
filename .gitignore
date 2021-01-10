@@ -1,4 +1,10 @@
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Ruserdata
+*.Rproj
+*_test.R
 .Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+inst/doc
+doc
+Meta
