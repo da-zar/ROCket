@@ -3,6 +3,15 @@ ROCket
 
 ## Intro
 
+ROCket was primarily build for effective ROC estimation in the presence
+of aggregated data, although it can also handle raw samples. Using
+aggregated data can be beneficial when dealing with large datasets
+containing categorical or discretized continuous features. Classifiers
+can be trained much faster after reducing the size of the data by
+calculating in advance all the sufficient statistics for each
+constellation of feature values. The same is true for preparing ROC
+curves\!
+
 ## Installation
 
 ``` r
@@ -26,14 +35,16 @@ and the number of positive observations. Your dataset could look like
 this:
 
 ``` r
+nrow(data_agg)
+#> [1] 11
 head(data_agg)
 #>    score totals positives
-#> 1:     1   6197      3816
-#> 2:     0   6194      2390
-#> 3:     2   3088      2452
-#> 4:    -1   3039       622
-#> 5:     3    666       603
-#> 6:    -2    694        56
+#> 1:     0  62435     24142
+#> 2:     2  30211     24185
+#> 3:    -1  30241      6240
+#> 4:     1  62471     38179
+#> 5:     3   6660      6051
+#> 6:    -2   6700       550
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
@@ -53,26 +64,28 @@ argument would be the regular indicator (numeric vector is required) for
 positive observations and the `totals` argument would not be needed
 (default is 1).
 
-You can print the object, to get some information about the content:
+You can print the object, to get some information about the content, or
+plot it:
 
 ``` r
 prep_data_agg
 #> .:: ROCket Prep Object 
-#> Positives (pos_n): 10000 
-#> Negatives (neg_n): 10000 
+#> Positives (pos_n): 100000 
+#> Negatives (neg_n): 100000 
 #> Pos ECDF (pos_ecdf): rkt_ecdf function 
 #> Neg ECDF (neg_ecdf): rkt_ecdf function
-```
-
-or plot it:
-
-``` r
 plot(prep_data_agg)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ### ROC curves
+
+Estimates of the ROC curve can be calculated with the `rkt_roc`
+function. It takes two arguments. The first one is the `rkt_prep`
+object, which contains all the needed data, and the second one is an
+integer saying which method of estimation to use. A list of implemented
+methods can be retrieved with the `show_methods` function.
 
 ``` r
 show_methods()
@@ -83,6 +96,19 @@ show_methods()
 #> 4:  4         ROC Function (binormal)
 ```
 
+In ROCket we distinguish two types of ROC curve representations:
+
+1.  parametric curves – TPR and FPR are functions of a parameter (the
+    score),
+2.  functions – TPR is a function of FPR.
+
+In the first case we estimate two functions, the x and y coordinates of
+the ROC curve (TPR, FPR). These two functions are returned as a list. In
+the second case the output is a regular function.
+
+Let’s now calculate estimates of the ROC curve using all available
+methods.
+
 ``` r
 roc_list <- list()
 for (i in 1:4){
@@ -90,53 +116,14 @@ for (i in 1:4){
 }
 ```
 
+The output of `rkt_roc` can be used to plot the ROC curve and calculate
+the AUC.
+
 ``` r
 par(mfrow = c(2, 2))
 for (i in 1:4){
-  plot(roc_list[[i]])
+  plot(roc_list[[i]], main = show_methods()[i, desc], sub = sprintf('AUC: %f', auc(roc_list[[i]])))
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
-
-### AUC
-
-``` r
-for (i in 1:4){
-  print(auc(roc_list[[i]]))
-}
-#> [1] 0.7428745
-#> [1] 0.6363024
-#> [1] 0.8494465
-#> [1] 0.7510745
-```
-
-### Plots with many points
-
-``` r
-head(data_agg_2)
-#>     score totals positives
-#> 1:  0.621      9         5
-#> 2: -0.216      7         2
-#> 3: -0.293      4         1
-#> 4:  0.432      6         3
-#> 5:  1.826      7         7
-#> 6: -0.126      6         2
-```
-
-``` r
-prep_data_agg_2 <- rkt_prep(
-  scores = data_agg_2$score, 
-  positives = data_agg_2$positives, 
-  totals = data_agg_2$totals)
-```
-
-``` r
-par(mfrow = c(1, 2))
-plot(prep_data_agg_2)
-#> Approximate plot using a sample of 1000 points.
-plot(prep_data_agg_2, type = 'l')
-#> Approximate plot using a sample of 1000 points.
-```
-
-![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->

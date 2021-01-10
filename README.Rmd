@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
 
 ## Intro
 
+ROCket was primarily build for effective ROC estimation in the presence of aggregated data, although it can also handle raw samples. Using aggregated data can be beneficial when dealing with large datasets containing categorical or discretized continuous features. Classifiers can be trained much faster after reducing the size of the data by calculating in advance all the sufficient statistics for each constellation of feature values. The same is true for preparing ROC curves!
 
 ## Installation
 
@@ -31,15 +32,15 @@ library(data.table)
 ### Data preparation
 
 ```{r include=FALSE}
-n <- 10000
+n <- 100000
 data <- data.table(score = c(rnorm(n), rnorm(n, 1)), pos = rep(0:1, each = n))[sample(2*n)]
 data_agg <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(score, 0))]
-data_agg_2 <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(score, 3))]
 ```
 
 The easiest way to get started is to bring your dataset into a form where you have for each predicted score the total number of observations and the number of positive observations. Your dataset could look like this:
 
 ```{r}
+nrow(data_agg)
 head(data_agg)
 ```
 
@@ -54,23 +55,29 @@ prep_data_agg <- rkt_prep(
 
 It is not necessary to use an aggregated dataset. It's also possible to have each single observation in a separate row -- then the `positives` argument would be the regular indicator (numeric vector is required) for positive observations and the `totals` argument would not be needed (default is 1).
 
-You can print the object, to get some information about the content:
-
-```{r}
-prep_data_agg
-```
-
-or plot it:
+You can print the object, to get some information about the content, or plot it:
 
 ```{r fig.width = 4, fig.height = 4}
+prep_data_agg
 plot(prep_data_agg)
 ```
 
 ### ROC curves
 
+Estimates of the ROC curve can be calculated with the `rkt_roc` function. It takes two arguments. The first one is the `rkt_prep` object, which contains all the needed data, and the second one is an integer saying which method of estimation to use. A list of implemented methods can be retrieved with the `show_methods` function.
+
 ```{r}
 show_methods()
 ```
+
+In ROCket we distinguish two types of ROC curve representations:
+
+ 1. parametric curves -- TPR and FPR are functions of a parameter (the score),
+ 1. functions -- TPR is a function of FPR.
+
+In the first case we estimate two functions, the x and y coordinates of the ROC curve (TPR, FPR). These two functions are returned as a list. In the second case the output is a regular function.
+
+Let's now calculate estimates of the ROC curve using all available methods.
 
 ```{r}
 roc_list <- list()
@@ -79,43 +86,14 @@ for (i in 1:4){
 }
 ```
 
+The output of `rkt_roc` can be used to plot the ROC curve and calculate the AUC.
+
 ```{r fig.width = 8, fig.height = 8}
 par(mfrow = c(2, 2))
 for (i in 1:4){
-  plot(roc_list[[i]])
+  plot(roc_list[[i]], main = show_methods()[i, desc], sub = sprintf('AUC: %f', auc(roc_list[[i]])))
 }
 ```
-
-
-### AUC
-
-```{r}
-for (i in 1:4){
-  print(auc(roc_list[[i]]))
-}
-```
-
-
-### Plots with many points
-
-```{r}
-head(data_agg_2)
-```
-
-```{r}
-prep_data_agg_2 <- rkt_prep(
-  scores = data_agg_2$score, 
-  positives = data_agg_2$positives, 
-  totals = data_agg_2$totals)
-```
-
-
-```{r fig.width = 8, fig.height = 4}
-par(mfrow = c(1, 2))
-plot(prep_data_agg_2)
-plot(prep_data_agg_2, type = 'l')
-```
-
 
 
 
