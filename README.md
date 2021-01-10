@@ -39,12 +39,12 @@ nrow(data_agg)
 #> [1] 11
 head(data_agg)
 #>    score totals positives
-#> 1:     0  62435     24142
-#> 2:     2  30211     24185
-#> 3:    -1  30241      6240
-#> 4:     1  62471     38179
-#> 5:     3   6660      6051
-#> 6:    -2   6700       550
+#> 1:     0  62611     24232
+#> 2:     2  30315     24174
+#> 3:    -3    612        34
+#> 4:     1  62684     38297
+#> 5:    -1  29882      6013
+#> 6:     4    616       595
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
@@ -55,7 +55,8 @@ with several different algorithms).
 prep_data_agg <- rkt_prep(
   scores = data_agg$score, 
   positives = data_agg$positives, 
-  totals = data_agg$totals)
+  totals = data_agg$totals
+)
 ```
 
 It is not necessary to use an aggregated dataset. It’s also possible to
@@ -122,7 +123,11 @@ the AUC.
 ``` r
 par(mfrow = c(2, 2))
 for (i in 1:4){
-  plot(roc_list[[i]], main = show_methods()[i, desc], sub = sprintf('AUC: %f', auc(roc_list[[i]])))
+  plot(
+    roc_list[[i]], 
+    main = show_methods()[i, desc], 
+    sub = sprintf('AUC: %f', auc(roc_list[[i]]))
+  )
 }
 ```
 

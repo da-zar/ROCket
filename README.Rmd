@@ -50,7 +50,8 @@ You can now pass this data to the `rkt_prep` function in order to create an obje
 prep_data_agg <- rkt_prep(
   scores = data_agg$score, 
   positives = data_agg$positives, 
-  totals = data_agg$totals)
+  totals = data_agg$totals
+)
 ```
 
 It is not necessary to use an aggregated dataset. It's also possible to have each single observation in a separate row -- then the `positives` argument would be the regular indicator (numeric vector is required) for positive observations and the `totals` argument would not be needed (default is 1).
@@ -91,7 +92,11 @@ The output of `rkt_roc` can be used to plot the ROC curve and calculate the AUC.
 ```{r fig.width = 8, fig.height = 8}
 par(mfrow = c(2, 2))
 for (i in 1:4){
-  plot(roc_list[[i]], main = show_methods()[i, desc], sub = sprintf('AUC: %f', auc(roc_list[[i]])))
+  plot(
+    roc_list[[i]], 
+    main = show_methods()[i, desc], 
+    sub = sprintf('AUC: %f', auc(roc_list[[i]]))
+  )
 }
 ```
 
