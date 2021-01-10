@@ -76,7 +76,7 @@ In ROCket we distinguish two types of ROC curve representations:
  1. parametric curves -- TPR and FPR are functions of a parameter (the score),
  1. functions -- TPR is a function of FPR.
 
-In the first case we estimate two functions, the x and y coordinates of the ROC curve (TPR, FPR). These two functions are returned as a list. In the second case the output is a regular function.
+In the first case we estimate two functions, the x and y coordinates of the ROC curve (FPR, TPR). These two functions are returned as a list. In the second case the output is a regular function.
 
 Let's now calculate estimates of the ROC curve using all available methods.
 

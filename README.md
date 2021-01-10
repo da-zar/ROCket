@@ -36,15 +36,15 @@ this:
 
 ``` r
 nrow(data_agg)
-#> [1] 11
+#> [1] 10
 head(data_agg)
 #>    score totals positives
-#> 1:     0  62611     24232
-#> 2:     2  30315     24174
-#> 3:    -3    612        34
-#> 4:     1  62684     38297
-#> 5:    -1  29882      6013
-#> 6:     4    616       595
+#> 1:     0  62767     24380
+#> 2:     3   6747      6156
+#> 3:     2  30004     24026
+#> 4:    -1  30444      6067
+#> 5:     1  62152     38109
+#> 6:    -2   6592       609
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
@@ -104,7 +104,7 @@ In ROCket we distinguish two types of ROC curve representations:
 2.  functions – TPR is a function of FPR.
 
 In the first case we estimate two functions, the x and y coordinates of
-the ROC curve (TPR, FPR). These two functions are returned as a list. In
+the ROC curve (FPR, TPR). These two functions are returned as a list. In
 the second case the output is a regular function.
 
 Let’s now calculate estimates of the ROC curve using all available
