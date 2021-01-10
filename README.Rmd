@@ -1,0 +1,121 @@
+---
+title: "ROCket"
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Intro
+
+
+## Installation
+
+```r
+# From GitHub
+# install.packages("devtools")
+devtools::install_github("da-zar/ROCket")
+```
+
+## Example
+
+```{r}
+library(ROCket)
+library(data.table)
+```
+
+### Data preparation
+
+```{r include=FALSE}
+n <- 10000
+data <- data.table(score = c(rnorm(n), rnorm(n, 1)), pos = rep(0:1, each = n))[sample(2*n)]
+data_agg <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(score, 0))]
+data_agg_2 <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(score, 3))]
+```
+
+The easiest way to get started is to bring your dataset into a form where you have for each predicted score the total number of observations and the number of positive observations. Your dataset could look like this:
+
+```{r}
+head(data_agg)
+```
+
+You can now pass this data to the `rkt_prep` function in order to create an object that will be later used for estimating ROC curves (possibly with several different algorithms).
+
+```{r}
+prep_data_agg <- rkt_prep(
+  scores = data_agg$score, 
+  positives = data_agg$positives, 
+  totals = data_agg$totals)
+```
+
+It is not necessary to use an aggregated dataset. It's also possible to have each single observation in a separate row -- then the `positives` argument would be the regular indicator (numeric vector is required) for positive observations and the `totals` argument would not be needed (default is 1).
+
+You can print the object, to get some information about the content:
+
+```{r}
+prep_data_agg
+```
+
+or plot it:
+
+```{r fig.width = 4, fig.height = 4}
+plot(prep_data_agg)
+```
+
+### ROC curves
+
+```{r}
+show_methods()
+```
+
+```{r}
+roc_list <- list()
+for (i in 1:4){
+  roc_list[[i]] <- rkt_roc(prep_data_agg, method = i)
+}
+```
+
+```{r fig.width = 8, fig.height = 8}
+par(mfrow = c(2, 2))
+for (i in 1:4){
+  plot(roc_list[[i]])
+}
+```
+
+
+### AUC
+
+```{r}
+for (i in 1:4){
+  print(auc(roc_list[[i]]))
+}
+```
+
+
+### Plots with many points
+
+```{r}
+head(data_agg_2)
+```
+
+```{r}
+prep_data_agg_2 <- rkt_prep(
+  scores = data_agg_2$score, 
+  positives = data_agg_2$positives, 
+  totals = data_agg_2$totals)
+```
+
+
+```{r fig.width = 8, fig.height = 4}
+par(mfrow = c(1, 2))
+plot(prep_data_agg_2)
+plot(prep_data_agg_2, type = 'l')
+```
+
+
+
+
