@@ -5,7 +5,7 @@
 #' @param prep A \code{rkt_prep} object.
 #' @param method A number specifying the type of ROC estimate. Possible values can be viewed with \code{show_methods()}.
 #' @param x An object of class \code{rkt_roc}.
-#' @param ... Further parameters passed to \code{\link{plot}} and \code{\link{segments}}
+#' @param ... Further parameters passed to \code{\link{plot}} and \code{\link{lines}}
 #'
 #' @return An object of class \code{rkt_roc} for S3 methods.
 #' @export

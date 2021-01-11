@@ -19,7 +19,7 @@ rkt_roc(prep, method = 1)
 
 \item{x}{An object of class \code{rkt_roc}.}
 
-\item{...}{Further parameters passed to \code{\link{plot}} and \code{\link{segments}}}
+\item{...}{Further parameters passed to \code{\link{plot}} and \code{\link{lines}}}
 }
 \value{
 An object of class \code{rkt_roc} for S3 methods.
