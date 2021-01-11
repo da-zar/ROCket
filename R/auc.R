@@ -30,7 +30,7 @@ auc.rkt_roc <- function(x, exact = TRUE, ...) {
       slim <- range(cutoffs, finite = TRUE) + c(-1, 0)
       return(-auc.curve(roc, slim[1], slim[2]))
     } else {
-      stop("ToDo")
+      stop("Unhandled object class.")
     }
   }
 
