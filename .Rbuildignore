@@ -3,3 +3,5 @@
 ^.*_test.R$
 ^doc$
 ^Meta$
+^README\.Rmd$
+^README_files$
