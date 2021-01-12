@@ -7,6 +7,8 @@ Description: Simple and fast functions for estimating ROC curves and creating ni
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/da-zar/ROCket
+BugReports: https://github.com/da-zar/ROCket/issues
 Imports:
     data.table (>= 1.13.0)
 Suggests:
