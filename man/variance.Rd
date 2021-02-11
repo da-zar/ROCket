@@ -14,6 +14,9 @@ variance(x, ...)
 
 \item{...}{Further parameters.}
 }
+\value{
+The (biased) sample variance as a numeric value.
+}
 \description{
 Sample Variance
 }

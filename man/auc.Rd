@@ -26,6 +26,9 @@ auc(x, ...)
 
 \item{exact}{Logical. If the exact formula should be used for calculating the AUC instead of numerical approximation.}
 }
+\value{
+The area under the curve as a numeric value.
+}
 \description{
 Calculate the AUC
 }
