@@ -2,9 +2,11 @@
 #'
 #' @param x An R object.
 #' @param ... Further parameters.
-#' 
+#'
+#' @return The (biased) sample variance as a numeric value.
+#'
 #' @seealso \code{\link{variance.rkt_ecdf}}, \code{\link{var}}
-#' 
+#'
 #' @export
 variance <- function(x, ...) {
   UseMethod("variance")
@@ -25,6 +27,8 @@ variance.default <- function(x, ...) {
 #' @param lower,upper The limits of integration.
 #' @param n The number of integration points.
 #' @param ... Further parameters.
+#'
+#' @return The area under the curve as a numeric value.
 #'
 #' @export
 auc <- function(x, ...) {

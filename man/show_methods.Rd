@@ -2,13 +2,13 @@
 % Please edit documentation in R/roc_methods.R
 \name{show_methods}
 \alias{show_methods}
-\title{Available ROC methods}
+\title{Available ROC estimation methods}
 \usage{
 show_methods()
 }
 \value{
-A data.table.
+A \code{\link{data.table}} containing the number and a short description of each implemented method.
 }
 \description{
-Available ROC methods
+Show the implemented ROC estimation methods.
 }

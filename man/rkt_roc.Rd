@@ -22,7 +22,7 @@ rkt_roc(prep, method = 1)
 \item{...}{Further parameters passed to \code{\link{plot}} and \code{\link{lines}}}
 }
 \value{
-An object of class \code{rkt_roc} for S3 methods.
+An object of class \code{rkt_roc}, i.e. a function or a list of two functions (for method = 1).
 }
 \description{
 Calculate the empirical estimate of the ROC from raw sample or aggregated data.
