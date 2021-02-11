@@ -41,12 +41,12 @@ nrow(data_agg)
 #> [1] 10
 head(data_agg)
 #>    score totals positives
-#> 1:     2  30571     24487
-#> 2:     0  62379     23844
-#> 3:     1  62473     38437
-#> 4:    -2   6529       601
-#> 5:    -1  30203      6052
-#> 6:     3   6544      5947
+#> 1:     1  62518     38467
+#> 2:    -1  30336      6097
+#> 3:     3   6602      6005
+#> 4:     0  62468     24096
+#> 5:    -2   6709       611
+#> 6:     2  30065     24084
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
