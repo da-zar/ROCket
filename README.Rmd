@@ -17,6 +17,9 @@ data_agg <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(sc
 
 # ROCket <img src='logos/hex_logo.png' align="right" height="120" />
 
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ROCket)](https://cran.r-project.org/package=ROCket)
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 ## Intro
 
 ROCket was primarily build for ROC curve estimation in the presence of aggregated data. Nevertheless, it can also handle raw samples. In general, aggregating data can be very beneficial when dealing with large datasets. Whenever a dataset consists of categorical or discretized continuous features, the data size can be effectively reduced by calculating sufficient statistics for each constellation of feature values. This saves memory and reduces the time needed to train classification models. Also model accuracy assessment can be done on aggregated data, which yields similar benefits. To this end, ROCket provides functions for ROC curve estimation and AUC calculation.

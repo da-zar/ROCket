@@ -1,6 +1,9 @@
 
 # ROCket <img src='logos/hex_logo.png' align="right" height="120" />
 
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/ROCket)](https://cran.r-project.org/package=ROCket)
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 ## Intro
 
 ROCket was primarily build for ROC curve estimation in the presence of
@@ -39,15 +42,15 @@ of positive cases. Your dataset could look like this:
 
 ``` r
 nrow(data_agg)
-#> [1] 12
+#> [1] 11
 head(data_agg)
 #>    score totals positives
-#> 1:     2  30319     24181
-#> 2:     1  62736     38515
-#> 3:    -1  30102      6029
-#> 4:     0  62366     24080
-#> 5:    -2   6669       592
-#> 6:    -3    603        23
+#> 1:     0  62228     24265
+#> 2:    -2   6705       631
+#> 3:     2  30401     24250
+#> 4:     3   6498      5938
+#> 5:     1  62553     38126
+#> 6:    -1  30372      6165
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
