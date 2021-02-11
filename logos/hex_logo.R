@@ -12,7 +12,7 @@ draw_hexagon <- function(r, color = "black") {
 }
 
 
-png("logos/hex_1.png", width = 2, height = 2, units = 'in', bg = "white", res = 300)
+png("logos/hex_1.png", width = 2, height = 2, units = 'in', bg = "transparent", res = 300)
 grid.newpage()
 vp <- viewport(xscale = c(-1, 1), yscale = c(-1, 1))
 pushViewport(vp)
