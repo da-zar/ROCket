@@ -23,7 +23,7 @@ png("logos/hex_2.png", width = 2, height = 2, units = 'in', bg = "transparent", 
 grid.newpage()
 vp <- viewport(xscale = c(-1, 1), yscale = c(-1, 1))
 pushViewport(vp)
-draw_hexagon(0.9, dark_color)
+draw_hexagon(0.85, dark_color)
 dev.off()
 
 

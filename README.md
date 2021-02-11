@@ -30,10 +30,6 @@ devtools::install_github("da-zar/ROCket")
 
 ## Example
 
-``` r
-library(ROCket)
-```
-
 ### Data preparation
 
 The easiest way to get started is to prepare a dataset containing all
@@ -42,15 +38,15 @@ of positive cases. Your dataset could look like this:
 
 ``` r
 nrow(data_agg)
-#> [1] 11
+#> [1] 10
 head(data_agg)
 #>    score totals positives
-#> 1:     0  62228     24265
-#> 2:    -2   6705       631
-#> 3:     2  30401     24250
-#> 4:     3   6498      5938
-#> 5:     1  62553     38126
-#> 6:    -1  30372      6165
+#> 1:     2  30571     24487
+#> 2:     0  62379     23844
+#> 3:     1  62473     38437
+#> 4:    -2   6529       601
+#> 5:    -1  30203      6052
+#> 6:     3   6544      5947
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
@@ -84,7 +80,7 @@ prep_data_agg
 plot(prep_data_agg)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ### ROC curves
 
@@ -137,4 +133,4 @@ for (i in 1:4){
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
