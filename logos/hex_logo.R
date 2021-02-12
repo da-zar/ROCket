@@ -41,7 +41,7 @@ logo <- hex_1 %>%
 
 logo
 
-image_write(logo, path = "logos/hex_logo.png")
+image_write(logo, path = "man/figures/hex_logo.png")
 
 file.remove('logos/hex_1.png', 'logos/hex_2.png')
 

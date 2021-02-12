@@ -5,7 +5,8 @@ output: github_document
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "man/figures/README-"
 )
 
 library(ROCket)
@@ -16,7 +17,7 @@ data <- data.table(score = c(rnorm(n), rnorm(n, 1)), pos = rep(0:1, each = n))[s
 data_agg <- data[, .(totals = .N, positives = sum(pos)), by = .(score = round(score, 0))]
 ```
 
-# ROCket <img src='logos/hex_logo.png' align="right" height="120" />
+# ROCket <img src='man/figures/hex_logo.png' align="right" height="120" />
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ROCket)](https://cran.r-project.org/package=ROCket)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
