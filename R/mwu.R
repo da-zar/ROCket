@@ -34,7 +34,7 @@ mwu.test <- function(prep, alternative = c("two.sided", "less", "greater"), corr
   roc <- rkt_roc(prep)
   AUC <- auc(roc)
 
-  U <- round(AUC * neg_n * pos_n)
+  U <- round(AUC * neg_n * pos_n, digits = 1)
 
   tie_correction <- sum(ties^3 - ties) / (n * (n-1))
 
