@@ -1,10 +1,24 @@
 
+#' Mann-Whitney U test
+#'
+#' Performs the Mann-Whitney U test with a normal approximation.
+#'
+#' @param prep A \code{rkt_prep} object.
+#' @param alternative The alternative hypothesis type. One of: "two.sided", "less", "greater".
+#' @param correct Logical. Whether to apply continuity correction.
+#'
+#' @return A list of the class "htest".
+#' @export
 mwu.test <- function(prep, alternative = c("two.sided", "less", "greater"), correct = TRUE) {
   alternative <- match.arg(alternative)
 
   neg_n <- as.numeric(prep$neg_n)
   pos_n <- as.numeric(prep$pos_n)
   n <- neg_n + pos_n
+
+  # fix global binding issue in package check
+  count <- NULL
+  value <- NULL
 
   ties <- data.table(
     value = c(
@@ -38,7 +52,7 @@ mwu.test <- function(prep, alternative = c("two.sided", "less", "greater"), corr
   )
 
   out <- list(
-    method = "Mann–Whitney U test",
+    method = "Mann-Whitney U test",
     data.name = deparse1(substitute(prep)),
     alternative = alternative,
     statistic = c("U" = U),
