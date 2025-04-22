@@ -1,7 +1,7 @@
 Package: ROCket
 Type: Package
 Title: Simple and Fast ROC Curves
-Version: 1.0.1.9000
+Version: 1.0.2
 Authors@R: person("Daniel", "Lazar", email = "da-zar@gmx.net", role = c("aut", "cre"))
 Description: A set of functions for receiver operating characteristic (ROC) curve 
     estimation and area under the curve (AUC) calculation.
@@ -13,8 +13,7 @@ Description: A set of functions for receiver operating characteristic (ROC) curv
     2) functions - TPR is a function of FPR.
     There are several ROC curve estimation methods available. An introduction to 
     the mathematical background of the implemented methods (and much more) can be found in 
-    de Zea Bermudez, Gonçalves, Oliveira & Subtil (2014) <https://www.ine.pt/revstat/pdf/rs140101.pdf> 
-    and Cai & Pepe (2004) <doi:10.1111/j.0006-341X.2004.00200.x>.
+    de Zea Bermudez, Gonçalves, Oliveira & Subtil (2014) and Cai & Pepe (2004).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -24,7 +23,7 @@ Imports:
     data.table (>= 1.13.0)
 Suggests:
     testthat
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Collate: 
     'ROCket.R'
     'generics.R'

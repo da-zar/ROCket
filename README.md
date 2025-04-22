@@ -1,7 +1,7 @@
 
 # ROCket <img src='man/figures/hex_logo.png' align="right" height="120" />
 
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/ROCket)](https://cran.r-project.org/package=ROCket)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ROCket)](https://cran.r-project.org/package=ROCket)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ## Intro
@@ -38,15 +38,15 @@ of positive cases. Your dataset could look like this:
 
 ``` r
 nrow(data_agg)
-#> [1] 11
+#> [1] 10
 head(data_agg)
 #>    score totals positives
-#> 1:     1  62840     38499
-#> 2:     0  62309     23985
-#> 3:     2  30143     24092
-#> 4:    -1  30282      6072
-#> 5:    -2   6509       597
-#> 6:     3   6642      6082
+#> 1:     2  30278     24071
+#> 2:     0  62758     24489
+#> 3:     1  62126     38225
+#> 4:    -2   6586       574
+#> 5:    -1  30269      5959
+#> 6:     3   6679      6045
 ```
 
 You can now pass this data to the `rkt_prep` function in order to create
